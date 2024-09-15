@@ -3,36 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Page Title</title>
+  <title>Reel Mood</title>
   
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-
     .preloader {
-      z-index: 9999;
-      background-color: #1a1a1a;
       position: fixed;
       top: 0;
-      right: 0;
-      bottom: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      background-color: #1a1a1a;
       display: flex;
-      align-items: center;
       justify-content: center;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+      align-items: center;
+      z-index: 9999;
     }
 
-    .preloader.loaded {
-      opacity: 0;
-      visibility: hidden;
+    .preloader-content {
+      text-align: center;
     }
 
     .preloader-logo {
@@ -41,24 +29,22 @@
       font-size: 1.75rem;
       color: #fff;
       letter-spacing: .25em;
-      text-align: center;
     }
 
     .preloader-logo img {
       width: 100px;
       height: auto;
       margin-bottom: 10px;
-      animation: fadeIn 1s ease-out forwards;
     }
 
     .preloader-logo__letter {
       display: inline-block;
-      animation: fadeIn 1s ease-out forwards;
       opacity: 0;
+      animation: fadeIn 0.5s forwards;
     }
 
     .preloader-logo__letter.bold {
-      font-weight: 900; /* Heavy bold for "MOOD" */
+      font-weight: 900;
     }
 
     .preloader-logo .red {
@@ -66,9 +52,11 @@
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
+    }
+
+    #content {
+      display: none;
     }
 
     @media screen and (max-width: 720px) {
@@ -81,6 +69,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       var preloader = document.querySelector('.preloader');
+      var content = document.getElementById('content');
       
       // Animate letters sequentially
       var letters = document.querySelectorAll('.preloader-logo__letter');
@@ -88,9 +77,14 @@
         letter.style.animationDelay = `${index * 0.1}s`;
       });
 
-      // Hide preloader after a delay
+      // Hide preloader and show content after a delay
       setTimeout(function() {
-        preloader.classList.add('loaded');
+        preloader.style.opacity = '0';
+        preloader.style.transition = 'opacity 0.5s ease-out';
+        setTimeout(function() {
+          preloader.style.display = 'none';
+          content.style.display = 'block';
+        }, 500);
       }, 2500); // Adjust this delay as needed
     });
   </script>
@@ -112,6 +106,10 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div id="content">
+    <!-- Your existing page content goes here -->
   </div>
 </body>
 </html>
