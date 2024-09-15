@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Page Title</title>
+  
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .preloader {
+      z-index: 9999;
+      background-color: #1a1a1a;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+    }
+
+    .preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-logo {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1.75rem;
+      color: #fff;
+      letter-spacing: .25em;
+      text-align: center;
+    }
+
+    .preloader-logo img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    .preloader-logo__letter {
+      display: inline-block;
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .preloader-logo__letter.bold {
+      font-weight: 900; /* Heavy bold for "MOOD" */
+    }
+
+    .preloader-logo .red {
+      color: #6150e8;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 720px) {
+      .preloader-logo {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var preloader = document.querySelector('.preloader');
+      
+      // Animate letters sequentially
+      var letters = document.querySelectorAll('.preloader-logo__letter');
+      letters.forEach((letter, index) => {
+        letter.style.animationDelay = `${index * 0.1}s`;
+      });
+
+      // Hide preloader after a delay
+      setTimeout(function() {
+        preloader.classList.add('loaded');
+      }, 2500); // Adjust this delay as needed
+    });
+  </script>
+</head>
+<body>
+  <div class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        <img src="https://i.ibb.co/JHJ9zhy/A9545-B2-F-56-CF-4435-BD9-B-36091736-FA9-A.png" alt="Logo">
+        <div>
+          <span class="preloader-logo__letter">R</span>
+          <span class="preloader-logo__letter">E</span>
+          <span class="preloader-logo__letter">E</span>
+          <span class="preloader-logo__letter">L</span>
+          <span class="preloader-logo__letter bold red">M</span>
+          <span class="preloader-logo__letter bold red">O</span>
+          <span class="preloader-logo__letter bold red">O</span>
+          <span class="preloader-logo__letter bold red">D</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
